@@ -12,8 +12,8 @@ app = Celery('sample')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Django의 앱에서 task를 자동으로 찾음
-app.autodiscover_tasks(['app_name']) # task는 일반적으로 Celery와 같은 작업 큐를 사용하여 백그라운드에서 실행되는 비동기 작업을 의미
-app.tasks.register(add)
+app.autodiscover_tasks() # task는 일반적으로 Celery와 같은 작업 큐를 사용하여 백그라운드에서 실행되는 비동기 작업을 의미
+# app.tasks.register(add)
 
 @app.task(bind=True)
 def debug_task(self):
